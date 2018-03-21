@@ -25,7 +25,7 @@ Register the health endpoint from `Program.cs`:
 .UseHealthChecks("/health")
 ```
 
-## Screenshots
+## Scenario
 
 When all services are up and their dependencies are accessible:
 
