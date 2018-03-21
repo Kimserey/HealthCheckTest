@@ -1,5 +1,6 @@
 ﻿using HealthcheckStatus.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.HealthChecks;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -10,22 +11,33 @@ namespace HealthcheckStatus.Controllers
     {
         public async Task<IActionResult> Index()
         {
-            HttpClient client = new HttpClient();
+            return View(new[] {
+                await Retrieve("http://localhost:5000", "WebA"),
+                await Retrieve("http://localhost:5500", "WebB"),
+                await Retrieve("http://localhost:5600", "WebC")
+            });
+        }
 
-            var healthA = await client.GetStringAsync("http://localhost:5000/health/status");
-            var a = JsonConvert.DeserializeObject<StatusViewModel>(healthA);
-            a.Name = "WebA";
-            a.Description = a.Description.Replace("\\\\", "\\");
+        private async Task<StatusViewModel> Retrieve(string host, string name)
+        {
+            StatusViewModel model = new StatusViewModel { Name = name + " - " + host, CheckStatus = CheckStatus.Unknown };
 
-            var healthB = await client.GetStringAsync("http://localhost:5500/health/status");
-            var b = JsonConvert.DeserializeObject<StatusViewModel>(healthB);
-            b.Name = "WebB";
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    var health = await client.GetAsync(host + "/health/status");
+                    if (health.IsSuccessStatusCode)
+                    {
+                        model = JsonConvert.DeserializeObject<StatusViewModel>(await health.Content.ReadAsStringAsync());
+                        model.Name = name + " - " + host;
+                        model.Description = model.Description.Replace("\\\\", "\\");
+                    }
+                }
+                catch { }
+            }
 
-            var healthC = await client.GetStringAsync("http://localhost:5600/health/status");
-            var c = JsonConvert.DeserializeObject<StatusViewModel>(healthC);
-            c.Name = "WebC";
-
-            return View(new[] { a, b, c });
+            return model;
         }
     }
 }
