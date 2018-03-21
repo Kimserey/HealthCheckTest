@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.HealthChecks;
-using System.Threading.Tasks;
 
-namespace HealthCheckTest
+namespace HealthcheckStatus
 {
     public class Startup
     {
@@ -19,18 +21,28 @@ namespace HealthCheckTest
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
-            services.AddHealthChecks(builder => builder.AddValueTaskCheck("I am alive", () => new ValueTask<IHealthCheckResult>(HealthCheckResult.Healthy("Ok"))));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
+                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
 
-            app.UseMvc();
+            app.UseStaticFiles();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }

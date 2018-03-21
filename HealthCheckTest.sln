@@ -7,11 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.AspNetCore.Health
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Extensions.HealthChecks", "Microsoft.Extensions.HealthChecks\Microsoft.Extensions.HealthChecks.csproj", "{D399C420-D456-4386-B25B-3F7CD4E91865}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebA", "WebA\WebA.csproj", "{02393EFD-ACAB-417B-AD2F-91A664CEF6FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebA", "WebA\WebA.csproj", "{02393EFD-ACAB-417B-AD2F-91A664CEF6FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebB", "WebB\WebB.csproj", "{390523A5-42A9-475A-9465-424C108920FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebB", "WebB\WebB.csproj", "{390523A5-42A9-475A-9465-424C108920FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebC", "WebC\WebC.csproj", "{46911B48-3D3F-4B01-9C21-B53D260DF7E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebC", "WebC\WebC.csproj", "{46911B48-3D3F-4B01-9C21-B53D260DF7E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthcheckStatus", "HealthcheckStatus\HealthcheckStatus.csproj", "{BAEC7C13-0992-4C55-97A5-CFD912F79055}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{46911B48-3D3F-4B01-9C21-B53D260DF7E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46911B48-3D3F-4B01-9C21-B53D260DF7E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46911B48-3D3F-4B01-9C21-B53D260DF7E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAEC7C13-0992-4C55-97A5-CFD912F79055}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAEC7C13-0992-4C55-97A5-CFD912F79055}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAEC7C13-0992-4C55-97A5-CFD912F79055}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAEC7C13-0992-4C55-97A5-CFD912F79055}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

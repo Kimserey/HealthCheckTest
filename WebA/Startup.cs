@@ -25,12 +25,10 @@ namespace WebA
         {
             services.AddMvc();
 
-            services.AddHealthChecks(checks =>
-                checks.AddHealthCheckGroup("services", servicesChecks =>
-                    servicesChecks
-                        .AddUrlCheck("http://localhost:5500/health")
-                        .AddUrlCheck("http://localhost:5600/health")
-                )
+            services.AddHealthChecks(checks => checks
+                .AddValueTaskCheck("I am alive", () => new ValueTask<IHealthCheckResult>(HealthCheckResult.Healthy("status code OK (200)")))
+                .AddUrlCheck("http://localhost:5500/health")
+                .AddUrlCheck("http://localhost:5600/health")
             );
         }
 

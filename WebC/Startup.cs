@@ -25,7 +25,9 @@ namespace WebC
         {
             services.AddMvc();
 
-            services.AddHealthChecks(checks => checks.AddValueTaskCheck("iamalive", () => new ValueTask<IHealthCheckResult>(HealthCheckResult.Healthy("I am alive"))));
+            services.AddHealthChecks(checks => checks
+                .AddValueTaskCheck("I am alive", () => new ValueTask<IHealthCheckResult>(HealthCheckResult.Healthy("status code OK (200)")))
+            );
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

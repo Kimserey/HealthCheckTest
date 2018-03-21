@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IEnumerable<StatusViewModel>
+
+<div class="container" style="margin-top:3em">
+    @foreach (var status in @Model)
+    { 
+    <div class="list-group-item">
+        @switch (@status.CheckStatus)
+        {
+            case CheckStatus.Unhealthy:
+                <div class="label label-danger" style="float: right">Unhealthy</div>
+                break;
+            case CheckStatus.Healthy:
+                <div class="label label-success" style="float: right">Healthy</div>
+                break;
+            case CheckStatus.Unknown:
+                <div class="label label-info" style="float: right">Unknown</div>
+                break;
+            case CheckStatus.Warning:
+                <div class="label label-warning" style="float: right">Warning</div>
+                break;
+            default: break;
+        }
+        <div class="list-group-item-heading" style="font-weight:600">@status.Name</div>
+        <pre>@status.Description</pre>
+    </div>
+    }
+</div>
