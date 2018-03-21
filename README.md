@@ -29,8 +29,8 @@ Register the health endpoint from `Program.cs`:
 
 When all services are up and their dependencies are accessible:
 
-![healthy](/healthy.png)
+![healthy](https://raw.githubusercontent.com/Kimserey/HealthCheckTest/master/healthy.PNG)
 
 When __WebB__ goes down, __WebA__ becomes unhealthy and the broken dependency can be identified in the description:
 
-![unhealthy](/unhealthy.png)
+![unhealthy](https://raw.githubusercontent.com/Kimserey/HealthCheckTest/master/unhealthy.PNG)
