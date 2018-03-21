@@ -1,7 +1,14 @@
-﻿using Microsoft.AspNetCore;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
-namespace HealthCheckTest
+namespace WebC
 {
     public class Program
     {
@@ -12,9 +19,7 @@ namespace HealthCheckTest
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseHealthChecks("/health")
                 .UseStartup<Startup>()
-                .UseUrls("http://localhost:5000")
                 .Build();
     }
 }
